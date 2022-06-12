@@ -1,15 +1,20 @@
 .app-wrapper {
-   margin: 0 auto;
-   width: 1440px;
-   display: grid;
-   grid-template-rows: 60px 2fr;
-   grid-template-columns: 2fr 10fr ;
-   grid-template-areas: 
+    margin: 0 auto;
+    width: 1440px;
+    display: grid;
+    grid-template-rows: 60px 2fr;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas:
    "h h"
    "n c";
-   grid-gap: 10px;
+    grid-gap: 10px;
+    background-color: green;
 }
 
 .footer {
-   grid-area: f;
+    grid-area: f;
+}
+
+.content {
+    grid-area: c;
 }
