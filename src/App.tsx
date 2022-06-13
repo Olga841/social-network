@@ -6,14 +6,13 @@ import {Nav} from './components/Nav';
 import {Dialogs} from "./components/Dialogs";
 import s from "./components/componrnts_styles/main.module.css";
 import {Route, Routes, HashRouter} from "react-router-dom";
+import {PostPropsType} from "./components/Post";
 
-const postsData = [
-    {post: "This is my first post! Let's fly!", like: '2 likes'},
-    {post: "Oh! This social network is awesome!", like: '2 likes'}
-]
+export type AppPropsType = {
+    posts: Array<PostPropsType>
+}
 
-function App() {
-
+function App(props:AppPropsType) {
     return (
         <HashRouter>
             <div className="app-wrapper">
@@ -21,8 +20,8 @@ function App() {
                 <Nav/>
                 <div className="content">
                     <Routes>
-                        <Route path='/profiles' element={<Main/>}/>
-                        <Route path='/' element={<Main/>}/>
+                        <Route path='/profiles' element={<Main posts={props.posts}/>}/>
+                        <Route path='/' element={<Main posts={props.posts}/>}/>
                         <Route path='/messages' element={<Dialogs/>}/>
                     </Routes>
                 </div>

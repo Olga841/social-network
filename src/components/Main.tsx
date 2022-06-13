@@ -2,14 +2,11 @@ import React from "react";
 import s from './componrnts_styles/main.module.css'
 import {Post, PostPropsType} from "./Post";
 
-export type MainTypeProps = Array<PostPropsType>
+export type MainTypeProps = {
+    posts: Array<PostPropsType>
+}
 
-const postsData = [
-    {post: "This is my first post! Let's fly!", like: '2 likes'},
-    {post: "Oh! This social network is awesome!", like: '2 likes'}
-]
-
-export function Main() {
+export function Main(props: MainTypeProps) {
 
     return (
       <main className={s.content}>
@@ -18,7 +15,7 @@ export function Main() {
           <div className='avatar'>my avatar  + logo</div>
           <div className='posts-list'>my posts
             <div className='new-post'>New post</div>
-              {postsData.map(p => {
+              {props.posts.map(p => {
                   <Post post={p.post} like={p.like}/>
               })}
           </div>

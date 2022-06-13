@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+export const postsData = [
+    {post: "This is my first post! Let's fly!", like: '2 likes'},
+    {post: "Oh! This social network is awesome!", like: '2 likes'}
+]
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App  posts={postsData}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
