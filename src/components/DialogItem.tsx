@@ -2,7 +2,7 @@ import React from "react";
 import s from "./componrnts_styles/main.module.css";
 import {NavLink} from "react-router-dom";
 
-type DialogItemPropsType = {
+export type DialogItemPropsType = {
     name: string
     id: number
 }
