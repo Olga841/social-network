@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
-import {Main, MainTypeProps} from './components/Main';
+import {Profile, MainTypeProps} from './components/Profile';
 import {Nav} from './components/Nav';
 import {Dialogs} from "./components/Dialogs";
 import s from "./components/componrnts_styles/main.module.css";
@@ -36,8 +36,8 @@ function App(props:MainTypeProps) {
                 <Nav/>
                 <div className="content">
                     <Routes>
-                        <Route path='/profiles' element={<Main posts={props.posts}/>}/>
-                        <Route path='/' element={<Main posts={props.posts}/>}/>
+                        <Route path='/profiles' element={<Profile posts={props.posts}/>}/>
+                        <Route path='/' element={<Profile posts={props.posts}/>}/>
                         <Route path='/messages' element={<Dialogs dialogs={dialogsData} messages={messagesData}/>}/>
                     </Routes>
                 </div>
