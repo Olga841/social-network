@@ -1,18 +1,34 @@
 import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
-import {Main} from './components/Main';
+import {Main, MainTypeProps} from './components/Main';
 import {Nav} from './components/Nav';
 import {Dialogs} from "./components/Dialogs";
 import s from "./components/componrnts_styles/main.module.css";
 import {Route, Routes, HashRouter} from "react-router-dom";
-import {PostPropsType} from "./components/Post";
 
-export type AppPropsType = {
-    posts: Array<PostPropsType>
-}
+const dialogsData = [
+    {id: 1, name: 'Vasya'},
+    {id: 2, name: 'Valera'},
+    {id: 3, name: 'Vera'},
+    {id: 4, name: 'Vyacheslav'},
+    {id: 5, name: 'Vova'},
+    {id: 6, name: 'Vitya'}
+]
 
-function App(props:AppPropsType) {
+const messagesData = [
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'},
+    {message: 'Hello!'}
+]
+
+function App(props:MainTypeProps) {
     return (
         <HashRouter>
             <div className="app-wrapper">
@@ -22,7 +38,7 @@ function App(props:AppPropsType) {
                     <Routes>
                         <Route path='/profiles' element={<Main posts={props.posts}/>}/>
                         <Route path='/' element={<Main posts={props.posts}/>}/>
-                        <Route path='/messages' element={<Dialogs/>}/>
+                        <Route path='/messages' element={<Dialogs dialogs={dialogsData} messages={messagesData}/>}/>
                     </Routes>
                 </div>
                 <footer className='footer'>x</footer>
