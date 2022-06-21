@@ -16,8 +16,7 @@ export type AppPropsType = {
     messages: Array<MessagePropsType>
 }
 
-function App(props:AppPropsType) {
-    console.log(props.posts)
+function App(props: AppPropsType) {
     return (
         <HashRouter>
             <div className="app-wrapper">
@@ -27,7 +26,8 @@ function App(props:AppPropsType) {
                     <Routes>
                         <Route path='/profiles' element={<Profile posts={props.posts}/>}/>
                         <Route path='/' element={<Profile posts={props.posts}/>}/>
-                        <Route path='/messages' element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                        <Route path='/messages' element={<Dialogs dialogs={props.dialogs}
+                                                                  messages={props.messages}/>}/>
                     </Routes>
                 </div>
                 <footer className='footer'>x</footer>
