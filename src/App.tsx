@@ -1,34 +1,23 @@
 import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
-import {Profile, MainTypeProps} from './components/Profile';
+import {Profile, ProfilePropsType} from './components/Profile';
 import {Nav} from './components/Nav';
 import {Dialogs} from "./components/Dialogs";
 import s from "./components/componrnts_styles/main.module.css";
 import {Route, Routes, HashRouter} from "react-router-dom";
+import {DialogItemPropsType} from "./components/DialogItem";
+import {MessagePropsType} from "./components/Message";
+import {PostPropsType} from "./components/Post";
 
-const dialogsData = [
-    {id: 1, name: 'Vasya'},
-    {id: 2, name: 'Valera'},
-    {id: 3, name: 'Vera'},
-    {id: 4, name: 'Vyacheslav'},
-    {id: 5, name: 'Vova'},
-    {id: 6, name: 'Vitya'}
-]
+export type AppPropsType = {
+    posts: Array<PostPropsType>
+    dialogs: Array<DialogItemPropsType>
+    messages: Array<MessagePropsType>
+}
 
-const messagesData = [
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'},
-    {message: 'Hello!'}
-]
-
-function App(props:MainTypeProps) {
+function App(props:AppPropsType) {
+    console.log(props.posts)
     return (
         <HashRouter>
             <div className="app-wrapper">
@@ -38,7 +27,7 @@ function App(props:MainTypeProps) {
                     <Routes>
                         <Route path='/profiles' element={<Profile posts={props.posts}/>}/>
                         <Route path='/' element={<Profile posts={props.posts}/>}/>
-                        <Route path='/messages' element={<Dialogs dialogs={dialogsData} messages={messagesData}/>}/>
+                        <Route path='/messages' element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
                     </Routes>
                 </div>
                 <footer className='footer'>x</footer>
