@@ -1,8 +1,10 @@
 .post_item {
-    color: royalblue;
+    color: black;
 }
 
 .post_item img {
+    height: 50px;
     width: 50px;
     border-radius: 50px;
+    margin: 0 20px 10px 0;
 }
