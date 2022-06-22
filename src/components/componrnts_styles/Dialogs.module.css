@@ -2,15 +2,25 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-.dialogsList {}
+
+.dialogsList {
+}
+
 .dialogItem {
     padding: 10px;
 
 }
-.messages {}
-.message {
-    padding: 10px;
+
+.messages {
 }
+
+.message {
+    background-color: yellow;
+    display: grid;
+    grid-template-columns: 0.5fr 9.5fr;
+    margin: 10px;
+}
+
 .dialogItem .active {
     color: gold;
 }
