@@ -50,3 +50,7 @@ export const state: RootStateType = {
         ]
     }
 }
+
+export function addPost(newPost: PostType) {
+    state.profilePage.posts.push(newPost)
+}
