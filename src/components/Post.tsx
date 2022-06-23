@@ -10,7 +10,7 @@ export type PostPropsType = {
 export function Post(props: PostPropsType) {
     return (
         <div className='post_item'>
-            <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="ava"/>
+            <img src="https://klike.net/uploads/posts/2019-03/1551511808_5.jpg" alt="ava"/>
             <span>{props.post}</span>
             <br/>
             <span>{props.like}</span>
