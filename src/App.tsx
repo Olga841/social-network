@@ -14,6 +14,7 @@ export type AppPropsType = {
     posts: Array<PostPropsType>
     dialogs: Array<DialogItemPropsType>
     messages: Array<MessagePropsType>
+    addPost: (newPost: PostPropsType) => void
 }
 
 function App(props: AppPropsType) {
@@ -24,8 +25,8 @@ function App(props: AppPropsType) {
                 <Nav/>
                 <div className="content">
                     <Routes>
-                        <Route path='/profiles' element={<Profile posts={props.posts}/>}/>
-                        <Route path='/' element={<Profile posts={props.posts}/>}/>
+                        <Route path='/profiles' element={<Profile posts={props.posts} addPost={props.addPost}/>}/>
+                        <Route path='/' element={<Profile posts={props.posts} addPost={props.addPost}/>}/>
                         <Route path='/messages' element={<Dialogs dialogs={props.dialogs}
                                                                   messages={props.messages}/>}/>
                     </Routes>
