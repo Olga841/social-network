@@ -9,6 +9,9 @@ export type DialogsPropsType = {
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
+    const addMessage = () => {
+        alert('?')
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsList}>
@@ -17,6 +20,10 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {props.messages.map(m => <Message message={m.message}/>)}
                 <textarea></textarea>
+                <button onClick={() => {
+                    addMessage()
+                }}>Send
+                </button>
             </div>
         </div>)
 }
