@@ -14,7 +14,7 @@ export type AppPropsType = {
     posts: Array<PostPropsType>
     dialogs: Array<DialogItemPropsType>
     messages: Array<MessagePropsType>
-    addPost: (newPost: PostPropsType) => void
+    addPost: (newPost: string) => void
 }
 
 function App(props: AppPropsType) {
