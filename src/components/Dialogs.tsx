@@ -9,6 +9,7 @@ export type DialogsPropsType = {
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
+    const newMessage = React.createRef<HTMLTextAreaElement>()
     const addMessage = () => {
         alert('?')
     }
@@ -19,7 +20,7 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {props.messages.map(m => <Message message={m.message}/>)}
-                <textarea></textarea>
+                <textarea ref={newMessage}></textarea>
                 <button onClick={addMessage}>Send
                 </button>
             </div>
