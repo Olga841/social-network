@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../../render";
+
 type PostType = {
     post: string
     like: string
@@ -16,7 +18,7 @@ type dialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: dialogsPageType
 }
@@ -57,4 +59,5 @@ export function addPost(newPost: string) {
         like: '0 likes'
     }
     state.profilePage.posts.push(message)
+    rerenderEntireTree(state)
 }
