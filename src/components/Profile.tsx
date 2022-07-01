@@ -6,6 +6,8 @@ import {ProfileInfo} from "./ProfileInfo";
 export type ProfilePropsType = {
     posts: Array<PostPropsType>
     addPost: (newPost: string) => void
+    newPostText: string
+    changePostText: (newPostText: string) => void
 }
 
 export function Profile(props: ProfilePropsType) {
@@ -13,17 +15,24 @@ export function Profile(props: ProfilePropsType) {
     const addPost = () => {
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value)
+            newPostElement.current.value = ''
+        }
+    }
+    const onPostChange = () => {
+        if (newPostElement.current) {
+            props.changePostText(newPostElement.current.value)
         }
     }
     return (
         <main className={s.content}>
             <ProfileInfo/>
             <div className='posts-list'>my posts
-                <textarea ref={newPostElement}></textarea>
+                <textarea ref={newPostElement}
+                          onChange={onPostChange}
+                          value={props.newPostText}/>
                 <button className='new-post' onClick={addPost}>New post
                 </button>
                 {props.posts.map(p => {
-                    debugger
                     return <Post post={p.post} like={p.like}/>
                 })}
             </div>

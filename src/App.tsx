@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
-import {Profile, ProfilePropsType} from './components/Profile';
+import {Profile} from './components/Profile';
 import {Nav} from './components/Nav';
 import {Dialogs} from "./components/Dialogs";
-import s from "./components/componrnts_styles/main.module.css";
-import {Route, Routes, HashRouter} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import {DialogItemPropsType} from "./components/DialogItem";
 import {MessagePropsType} from "./components/Message";
 import {PostPropsType} from "./components/Post";
@@ -14,7 +13,9 @@ export type AppPropsType = {
     posts: Array<PostPropsType>
     dialogs: Array<DialogItemPropsType>
     messages: Array<MessagePropsType>
+    newPostText: string
     addPost: (newPost: string) => void
+    changePostText: (newPostText: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -25,8 +26,12 @@ function App(props: AppPropsType) {
                 <Nav/>
                 <div className="content">
                     <Routes>
-                        <Route path='/profiles' element={<Profile posts={props.posts} addPost={props.addPost}/>}/>
-                        <Route path='/' element={<Profile posts={props.posts} addPost={props.addPost}/>}/>
+                        <Route path='/profiles' element={<Profile posts={props.posts} addPost={props.addPost}
+                                                                  changePostText={props.changePostText}
+                                                                  newPostText={props.newPostText}/>}/>
+                        <Route path='/' element={<Profile posts={props.posts} addPost={props.addPost}
+                                                          changePostText={props.changePostText}
+                                                          newPostText={props.newPostText}/>}/>
                         <Route path='/messages' element={<Dialogs dialogs={props.dialogs}
                                                                   messages={props.messages}/>}/>
                     </Routes>

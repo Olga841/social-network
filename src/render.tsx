@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {addPost, RootStateType} from "./components/redux/state";
+import {addPost, changePostText, RootStateType} from "./components/redux/state";
 
 
 export const rerenderEntireTree = (state: RootStateType) => {
@@ -13,6 +13,8 @@ export const rerenderEntireTree = (state: RootStateType) => {
                 dialogs={state.dialogsPage.dialogs}
                 messages={state.dialogsPage.messages}
                 addPost={addPost}
+                newPostText={state.profilePage.newPostText}
+                changePostText={changePostText}
             />
         </React.StrictMode>,
         document.getElementById('root')

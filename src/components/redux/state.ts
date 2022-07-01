@@ -13,6 +13,7 @@ type MessageType = {
 }
 type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 type dialogsPageType = {
     dialogs: Array<DialogType>
@@ -29,6 +30,7 @@ export const state: RootStateType = {
             {post: "This is my first post! Let's fly!", like: '2 likes'},
             {post: "Oh! This social network is awesome!", like: '2 likes'}
         ],
+        newPostText: 'it-kamasutra'
     },
     dialogsPage: {
         dialogs: [
@@ -59,5 +61,11 @@ export function addPost(newPost: string) {
         like: '0 likes'
     }
     state.profilePage.posts.push(message)
+    rerenderEntireTree(state)
+}
+
+export function changePostText(text: string) {
+    state.profilePage.newPostText = text
+    console.log(text)
     rerenderEntireTree(state)
 }
