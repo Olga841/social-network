@@ -22,11 +22,10 @@ export function Profile(props: ProfilePropsType) {
                 <textarea ref={newPostElement}></textarea>
                 <button className='new-post' onClick={addPost}>New post
                 </button>
-                {console.log('posts rendering...')}
                 {props.posts.map(p => {
+                    debugger
                     return <Post post={p.post} like={p.like}/>
                 })}
-                {console.log('posts rendered!')}
             </div>
         </main>
     )
