@@ -70,3 +70,17 @@ export function changePostText(text: string) {
     rerenderEntireTree(state)
     state.profilePage.newPostText = ''
 }
+
+export function addMessage(newMessage: string) {
+    let message: MessageType = {message: newMessage}
+    state.dialogsPage.messages.push(message)
+    rerenderEntireTree(state)
+}
+
+/*
+export function changeMessageText(text: string) {
+    state.dialogsPage. = text
+    console.log(text)
+    rerenderEntireTree(state)
+    state.profilePage.newPostText = ''
+}*/
