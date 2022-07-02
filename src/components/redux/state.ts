@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../../render";
+let rerenderEntireTree = () => {
+    alert('?')
+}
 
 type PostType = {
     post: string
@@ -63,25 +65,29 @@ export function addPost(newPost: string) {
         like: '0 likes'
     }
     state.profilePage.posts.push(message)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export function changePostText(text: string) {
     state.profilePage.newPostText = text
     console.log(text)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
     state.profilePage.newPostText = ''
 }
 
 export function addMessage(newMessage: string) {
     let message: MessageType = {message: newMessage}
     state.dialogsPage.messages.push(message)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export function changeMessageText(text: string) {
     state.dialogsPage.newMessage = text
     console.log(state.dialogsPage.newMessage)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
     state.dialogsPage.newMessage = ''
+}
+
+export let subscriber = (observer: () => void) => {
+    rerenderEntireTree = observer
 }
