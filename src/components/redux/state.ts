@@ -68,4 +68,5 @@ export function changePostText(text: string) {
     state.profilePage.newPostText = text
     console.log(text)
     rerenderEntireTree(state)
+    state.profilePage.newPostText = ''
 }
