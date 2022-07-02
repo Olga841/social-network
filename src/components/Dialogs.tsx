@@ -7,6 +7,8 @@ export type DialogsPropsType = {
     dialogs: Array<DialogItemPropsType>
     messages: Array<MessagePropsType>
     addMessage: (newMessage: string) => void
+    changeMessageText: (text: string) => void
+    newMessage: string
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -16,9 +18,11 @@ export const Dialogs = (props: DialogsPropsType) => {
             props.addMessage(newMessage.current.value)
         }
     }
-    /*const onMessageChange = () => {
-        alert('.!..')
-    }*/
+    const onMessageChange = () => {
+        if (newMessage.current) {
+            props.changeMessageText(newMessage.current.value)
+        }
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsList}>
@@ -27,7 +31,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {props.messages.map(m => <Message message={m.message}/>)}
                 <textarea ref={newMessage}
-                    /*onChange={onMessageChange}*//>
+                          onChange={onMessageChange}
+                          value={props.newMessage}/>
                 <button onClick={addMessage}>Send
                 </button>
             </div>
