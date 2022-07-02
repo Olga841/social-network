@@ -6,12 +6,13 @@ import {Message, MessagePropsType} from "./Message";
 export type DialogsPropsType = {
     dialogs: Array<DialogItemPropsType>
     messages: Array<MessagePropsType>
+    addMessage: (newMessage: string) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
     const newMessage = React.createRef<HTMLTextAreaElement>()
     const addMessage = () => {
-        alert('?')
+        props.addMessage('123456')
     }
     return (
         <div className={s.dialogs}>

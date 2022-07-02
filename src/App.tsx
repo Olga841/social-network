@@ -16,6 +16,7 @@ export type AppPropsType = {
     newPostText: string
     addPost: (newPost: string) => void
     changePostText: (newPostText: string) => void
+    addMessage: (newMessage: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -33,7 +34,8 @@ function App(props: AppPropsType) {
                                                           changePostText={props.changePostText}
                                                           newPostText={props.newPostText}/>}/>
                         <Route path='/messages' element={<Dialogs dialogs={props.dialogs}
-                                                                  messages={props.messages}/>}/>
+                                                                  messages={props.messages}
+                                                                  addMessage={props.addMessage}/>}/>
                     </Routes>
                 </div>
                 <footer className='footer'>x</footer>
