@@ -55,6 +55,9 @@ const store = {
             newMessage: 'Hello, my Dear friend!'
         }
     },
+    getState() {
+        return this._state
+    },
     _rerenderEntireTree() {
         alert('?')
     },
