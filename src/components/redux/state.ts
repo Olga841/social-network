@@ -23,7 +23,7 @@ export type RootStateType = {
     dialogsPage: dialogsPageType
 }
 
-const store = {
+export const store = {
     _state: {
         profilePage: {
             posts: [
