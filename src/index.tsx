@@ -2,29 +2,35 @@ import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import {store} from "./components/redux/state";
+import {RootStateType, store, StoreType} from "./components/redux/state";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-const rerenderEntireTree = () => {
+type PropsType = {
+    store: StoreType
+}
+
+const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                posts={store.getState().profilePage.posts}
-                dialogs={store.getState().dialogsPage.dialogs}
-                messages={store.getState().dialogsPage.messages}
-                addPost={store.addPost.bind(store)}
-                newPostText={store.getState().profilePage.newPostText}
-                changePostText={store.changePostText.bind(store)}
-                addMessage={store.addMessage.bind(store)}
-                changeMessageText={store.changeMessageText.bind(store)}
-                newMessage={store.getState().dialogsPage.newMessage}
+                dispatch={store.dispatch.bind(store)}
+                state={state}
+                // posts={ store.getState().profilePage.posts}
+                // dialogs={ store.getState().dialogsPage.dialogs}
+                // messages={ store.getState().dialogsPage.messages}
+                // dispatch={ store.dispatch.bind(store)}
+                // newPostText={ store.getState().profilePage.newPostText}
+                // changePostText={store.changePostText.bind(store)}
+                // addMessage={store.addMessage.bind(store)}
+                // changeMessageText={store.dispatch('CHANGE-MESSAGE-TEXT',).bind(store)}
+                // newMessage={store.getState().dialogsPage.newMessage}
             />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
-rerenderEntireTree();
+rerenderEntireTree(store.getState());
 store.subscriber(rerenderEntireTree)
 
 
