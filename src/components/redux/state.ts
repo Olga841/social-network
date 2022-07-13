@@ -22,8 +22,19 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: dialogsPageType
 }
+export type StoreType = {
+    _state: RootStateType
+    getState: () => RootStateType
+    _rerenderEntireTree: (state: RootStateType) => void
+    /* addPost: (newPost: string) => void*/
+    changePostText: (text: string) => void
+    addMessage: (newMessage: string) => void
+    changeMessageText: (text: string) => void
+    subscriber: (observer: (state: RootStateType) => void) => void
+    dispatch: (action: any) => void
+}
 
-export const store = {
+export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -61,32 +72,56 @@ export const store = {
     _rerenderEntireTree() {
         alert('?')
     },
-    addPost(newPost: string) {
-        let message: PostType = {
-            post: newPost,
-            like: '0 likes'
-        }
-        this._state.profilePage.posts.push(message)
-        this._rerenderEntireTree()
-    },
+    /* addPost(newPost: string) {
+         let message: PostType = {
+             post: newPost,
+             like: '0 likes'
+         }
+         this._state.profilePage.posts.push(message)
+         this._rerenderEntireTree(this._state)
+     },*/
     changePostText(text: string) {
         this._state.profilePage.newPostText = text
         console.log(text)
-        this._rerenderEntireTree()
+        this._rerenderEntireTree(this._state)
         this._state.profilePage.newPostText = ''
     },
     addMessage(newMessage: string) {
         let message: MessageType = {message: newMessage}
         this._state.dialogsPage.messages.push(message)
-        this._rerenderEntireTree()
+        this._rerenderEntireTree(this._state)
     },
     changeMessageText(text: string) {
         this._state.dialogsPage.newMessage = text
         console.log(this._state.dialogsPage.newMessage)
-        this._rerenderEntireTree()
+        this._rerenderEntireTree(this._state)
         this._state.dialogsPage.newMessage = ''
     },
-    subscriber(observer: () => void) {
+    subscriber(observer) {
         this._rerenderEntireTree = observer
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let message: PostType = {
+                post: action.newPost,
+                like: '0 likes'
+            }
+            this._state.profilePage.posts.push(message)
+            this._rerenderEntireTree(this._state)
+        } else if (action.type === 'CHANGE-POST-TEXT') {
+            this._state.profilePage.newPostText = action.text
+            console.log(action.text)
+            this._rerenderEntireTree(this._state)
+            this._state.profilePage.newPostText = ''
+        } else if (action.type === 'ADD-MESSAGE') {
+            let message: MessageType = {message: action.newMessage}
+            this._state.dialogsPage.messages.push(message)
+            this._rerenderEntireTree(this._state)
+        } else if (action.type = 'CHANGE-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessage = action.text
+            console.log(this._state.dialogsPage.newMessage)
+            this._rerenderEntireTree(this._state)
+            this._state.dialogsPage.newMessage = ''
+        }
     }
 }
