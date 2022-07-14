@@ -10,12 +10,12 @@ type PropsType = {
     store: StoreType
 }
 
-const rerenderEntireTree = (state: RootStateType) => {
+const rerenderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App
                 dispatch={store.dispatch.bind(store)}
-                state={state}
+                state={store.getState()}
                 // posts={ store.getState().profilePage.posts}
                 // dialogs={ store.getState().dialogsPage.dialogs}
                 // messages={ store.getState().dialogsPage.messages}
@@ -30,7 +30,7 @@ const rerenderEntireTree = (state: RootStateType) => {
         document.getElementById('root')
     );
 }
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 store.subscriber(rerenderEntireTree)
 
 
