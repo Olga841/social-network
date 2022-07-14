@@ -12,21 +12,20 @@ type PropsType = {
 
 const rerenderEntireTree = () => {
     ReactDOM.render(
-        <React.StrictMode>
-            <App
-                dispatch={store.dispatch.bind(store)}
-                state={store.getState()}
-                // posts={ store.getState().profilePage.posts}
-                // dialogs={ store.getState().dialogsPage.dialogs}
-                // messages={ store.getState().dialogsPage.messages}
-                // dispatch={ store.dispatch.bind(store)}
-                // newPostText={ store.getState().profilePage.newPostText}
-                // changePostText={store.changePostText.bind(store)}
-                // addMessage={store.addMessage.bind(store)}
-                // changeMessageText={store.dispatch('CHANGE-MESSAGE-TEXT',).bind(store)}
-                // newMessage={store.getState().dialogsPage.newMessage}
-            />
-        </React.StrictMode>,
+        <App
+            dispatch={store.dispatch.bind(store)}
+            state={store.getState()}
+            // posts={ store.getState().profilePage.posts}
+            // dialogs={ store.getState().dialogsPage.dialogs}
+            // messages={ store.getState().dialogsPage.messages}
+            // dispatch={ store.dispatch.bind(store)}
+            // newPostText={ store.getState().profilePage.newPostText}
+            // changePostText={store.changePostText.bind(store)}
+            // addMessage={store.addMessage.bind(store)}
+            // changeMessageText={store.dispatch('CHANGE-MESSAGE-TEXT',).bind(store)}
+            // newMessage={store.getState().dialogsPage.newMessage}
+        />,
+
         document.getElementById('root')
     );
 }
