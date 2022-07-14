@@ -33,35 +33,14 @@ function App(props: AppPropsType) {
                 <div className="content">
                     <Routes>
                         <Route path='/profiles' element={<Profile posts={props.state.profilePage.posts}
-                                                                  addPost={props.dispatch({
-                                                                      type: 'ADD-POST',
-                                                                      newPostText: props.state.profilePage.newPostText
-                                                                  })}
-                                                                  changePostText={props.dispatch({
-                                                                      type: 'CHANGE-POST-TEXT',
-                                                                      newPostText: props.state.profilePage.newPostText
-                                                                  })}
+                                                                  dispatch={props.dispatch}
                                                                   newPostText={props.state.profilePage.newPostText}/>}/>
                         <Route path='/' element={<Profile posts={props.state.profilePage.posts}
-                                                          addPost={props.dispatch({
-                                                              type: 'ADD-POST',
-                                                              newPostText: props.state.profilePage.newPostText
-                                                          })}
-                                                          changePostText={props.dispatch({
-                                                              type: 'CHANGE-POST-TEXT',
-                                                              newPostText: props.state.profilePage.newPostText
-                                                          })}
+                                                          dispatch={props.dispatch}
                                                           newPostText={props.state.profilePage.newPostText}/>}/>
                         <Route path='/messages' element={<Dialogs dialogs={props.state.dialogsPage.dialogs}
                                                                   messages={props.state.dialogsPage.messages}
-                                                                  addMessage={props.dispatch({
-                                                                      type: 'ADD-MESSAGE',
-                                                                      newMessage: props.state.dialogsPage.newMessage
-                                                                  })}
-                                                                  changeMessageText={props.dispatch({
-                                                                      type: 'CHANGE-MESSAGE-TEXT',
-                                                                      newMessage: props.state.dialogsPage.newMessage
-                                                                  })}
+                                                                  dispatch={props.dispatch}
                                                                   newMessage={props.state.dialogsPage.newMessage}/>}/>
                     </Routes>
                 </div>

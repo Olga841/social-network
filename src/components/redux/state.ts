@@ -35,6 +35,12 @@ export type StoreType = {
 }
 
 export type ActionsTypes = AddPostType | ChangePostText | AddMessage | ChangeMessageText
+
+export const addPostAC = (newPost: string) => ({type: 'ADD-POST', newPost} as const)
+export const changePostTextAC = (text: string) => ({type: 'CHANGE-POST-TEXT', text} as const)
+export const addMessageAC = (newMessage: string) => ({type: 'ADD-MESSAGE', newMessage} as const)
+export const changeMessageTextAC = (text: string) => ({type: 'CHANGE-MESSAGE-TEXT', text} as const)
+
 type AddPostType = {
     type: 'ADD-POST'
     newPost: string
@@ -87,7 +93,7 @@ export const store: StoreType = {
         return this._state
     },
     _rerenderEntireTree() {
-        alert('?')
+
     },
     /* addPost(newPost: string) {
          let message: PostType = {
@@ -125,20 +131,20 @@ export const store: StoreType = {
             }
             this._state.profilePage.posts.push(message)
             this._rerenderEntireTree()
+            this._state.profilePage.newPostText = ''
         } else if (action.type === 'CHANGE-POST-TEXT') {
             this._state.profilePage.newPostText = action.text
             console.log(action.text)
             this._rerenderEntireTree()
-            this._state.profilePage.newPostText = ''
         } else if (action.type === 'ADD-MESSAGE') {
             let message: MessageType = {message: action.newMessage}
             this._state.dialogsPage.messages.push(message)
             this._rerenderEntireTree()
+            this._state.dialogsPage.newMessage = ''
         } else if (action.type === 'CHANGE-MESSAGE-TEXT') {
             this._state.dialogsPage.newMessage = action.text
             console.log(this._state.dialogsPage.newMessage)
             this._rerenderEntireTree()
-            this._state.dialogsPage.newMessage = ''
         }
     }
 }

@@ -2,12 +2,12 @@ import React from "react";
 import s from "./componrnts_styles/Dialogs.module.css";
 import {DialogItem, DialogItemPropsType} from "./DialogItem";
 import {Message, MessagePropsType} from "./Message";
+import {addMessageAC, changeMessageTextAC} from "./redux/state";
 
 export type DialogsPropsType = {
     dialogs: Array<DialogItemPropsType>
     messages: Array<MessagePropsType>
-    addMessage: (newMessage: string) => void
-    changeMessageText: (text: string) => void
+    dispatch: (action: any) => void
     newMessage: string
 }
 
@@ -15,12 +15,12 @@ export const Dialogs = (props: DialogsPropsType) => {
     const newMessage = React.createRef<HTMLTextAreaElement>()
     const addMessage = () => {
         if (newMessage.current) {
-            props.addMessage(newMessage.current.value)
+            props.dispatch(addMessageAC(newMessage.current.value))
         }
     }
     const onMessageChange = () => {
         if (newMessage.current) {
-            props.changeMessageText(newMessage.current.value)
+            props.dispatch(changeMessageTextAC(newMessage.current.value))
         }
     }
     return (
