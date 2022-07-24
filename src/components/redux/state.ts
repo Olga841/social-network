@@ -36,10 +36,15 @@ export type StoreType = {
 
 export type ActionsTypes = AddPostType | ChangePostText | AddMessage | ChangeMessageText
 
-export const addPostAC = (newPost: string) => ({type: 'ADD-POST', newPost} as const)
-export const changePostTextAC = (text: string) => ({type: 'CHANGE-POST-TEXT', text} as const)
-export const addMessageAC = (newMessage: string) => ({type: 'ADD-MESSAGE', newMessage} as const)
-export const changeMessageTextAC = (text: string) => ({type: 'CHANGE-MESSAGE-TEXT', text} as const)
+export const ADD_POST = 'ADD-POST'
+export const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT'
+export const ADD_MESSAGE = 'ADD-MESSAGE'
+export const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT'
+
+export const addPostAC = (newPost: string) => ({type: ADD_POST, newPost} as const)
+export const changePostTextAC = (text: string) => ({type: CHANGE_POST_TEXT, text} as const)
+export const addMessageAC = (newMessage: string) => ({type: ADD_MESSAGE, newMessage} as const)
+export const changeMessageTextAC = (text: string) => ({type: CHANGE_MESSAGE_TEXT, text} as const)
 
 type AddPostType = {
     type: 'ADD-POST'
