@@ -17,10 +17,6 @@ export type AppPropsType = {
     // newPostText: string
     dispatch: (action: any) => any
     state: RootStateType
-    // changePostText: (newPostText: string) => void
-    // addMessage: (newMessage: string) => void
-    // changeMessageText: (text: string) => void
-    // newMessage: string
 }
 
 function App(props: AppPropsType) {

@@ -7,6 +7,6 @@ export default {
     component: Profile,
 }
 
-export const profileStory = () => <Profile newPostText={'123456'} changePostText={x => x} posts={[]} addPost={x => x}/>;
+/*export const profileStory = () => <Profile newPostText={'123456'} changePostText={x => x} posts={[]} addPost={x => x}/>;*/
 
 
