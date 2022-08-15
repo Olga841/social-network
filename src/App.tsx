@@ -8,15 +8,16 @@ import {HashRouter, Route, Routes} from "react-router-dom";
 import {DialogItemPropsType} from "./components/DialogItem";
 import {MessagePropsType} from "./components/Message";
 import {PostPropsType} from "./components/Post";
-import {RootStateType, StoreType} from "./components/redux/state";
+import {RootStateType, StoreType} from "./components/redux/store";
+import {ProfileContainer} from "./components/ProfileContainer";
+import store from "./components/redux/redux-store";
 
 export type AppPropsType = {
     // posts: Array<PostPropsType>
     // dialogs: Array<DialogItemPropsType>
     // messages: Array<MessagePropsType>
     // newPostText: string
-    dispatch: (action: any) => any
-    state: RootStateType
+
 }
 
 function App(props: AppPropsType) {
@@ -28,12 +29,8 @@ function App(props: AppPropsType) {
                 <Nav/>
                 <div className="content">
                     <Routes>
-                        <Route path='/profiles' element={<Profile posts={props.state.profilePage.posts}
-                                                                  dispatch={props.dispatch}
-                                                                  newPostText={props.state.profilePage.newPostText}/>}/>
-                        <Route path='/' element={<Profile posts={props.state.profilePage.posts}
-                                                          dispatch={props.dispatch}
-                                                          newPostText={props.state.profilePage.newPostText}/>}/>
+                        <Route path='/profiles' element={<ProfileContainer store={store}/>}/>
+                        <Route path='/' element={<ProfileContainer store={store}/>}/>
                         <Route path='/messages' element={<Dialogs dialogs={props.state.dialogsPage.dialogs}
                                                                   messages={props.state.dialogsPage.messages}
                                                                   dispatch={props.dispatch}
