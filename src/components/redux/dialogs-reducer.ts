@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogsPageType, MessageType, PostType} from "./state";
+import {ActionsTypes, DialogsPageType, MessageType, PostType} from "./store";
 
 export function dialogsReducer(state: DialogsPageType, action: ActionsTypes) {
     if (action.type === 'ADD-MESSAGE') {
