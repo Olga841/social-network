@@ -1,35 +1,30 @@
 import React from "react";
-import s from './componrnts_styles/main.module.css'
-import {Post, PostPropsType} from "./Post";
-import {ProfileInfo} from "./ProfileInfo";
-import {addPostAC, changePostTextAC} from "./redux/store";
 import {Profile} from "./Profile";
-import {StoreType} from "./redux/redux-store";
+import {connect} from "react-redux";
+import {AppStateType} from "./redux/redux-store";
+import {Dispatch} from "redux";
+import {addPostAC, changePostTextAC} from "./redux/profile-reducer";
 
-export type ProfilePropsType = {
-    store: StoreType
-    // posts: Array<PostPropsType>
-    // dispatch: (action: any) => void
-    //addPost: (newPost: string) => void
-    // newPostText: string
-    //changePostText: (newPostText: string) => void
+type PostType = {
+    post: string
+    like: string
+}
+type mapStateToPropsType = {
+    posts: Array<PostType>
+    newPostText: string
 }
 
-export function ProfileContainer(props: ProfilePropsType) {
-    const newPostElement = React.createRef<HTMLTextAreaElement>()
-    const addPost = () => {
-        if (newPostElement.current) {
-            props.store.dispatch(addPostAC(newPostElement.current.value));
-        }
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
     }
-    const onPostChange = () => {
-        if (newPostElement.current) {
-            props.store.dispatch(changePostTextAC(newPostElement.current.value))
-
-        }
-    }
-    return (
-        <Profile posts={props.store.getState().profilePage.posts} updateNewPostText={onPostChange} addPost={addPost}
-                 newPostText={props.store.getState().profilePage.newPostText}/>
-    )
 }
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        addPost: (newPostElement: string) => (dispatch(addPostAC(newPostElement))),
+        onPostChange: (newPostElement: string) => (dispatch(changePostTextAC(newPostElement)))
+    }
+}
+export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
