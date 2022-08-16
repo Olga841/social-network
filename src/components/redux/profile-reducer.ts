@@ -28,17 +28,18 @@ const initialState: ProfilePageType = {
 
 export function profileReducer(state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType {
     if (action.type === ADD_POST) {
-        let message: PostType = {
-            post: action.newPost,
-            like: '0 likes'
+        return {
+            ...state,
+            posts: [...state.posts, {
+                post: action.newPost,
+                like: '0 likes'
+            }],
+            newPostText: ''
         }
-        state.posts.push(message)
-        state.newPostText = ''
     } else if (action.type === CHANGE_POST_TEXT) {
-        state.newPostText = action.text
-        console.log(action.text)
+        return {...state, newPostText: action.text}
     }
-    return state
+    return {...state}
 }
 
 export const addPostAC = (newPost: string) => ({type: ADD_POST, newPost} as const)
