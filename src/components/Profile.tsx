@@ -2,7 +2,6 @@ import React from "react";
 import s from './componrnts_styles/main.module.css'
 import {Post, PostPropsType} from "./Post";
 import {ProfileInfo} from "./ProfileInfo";
-import {addPostAC, changePostTextAC} from "./redux/store";
 
 export type ProfilePropsType = {
     posts: Array<PostPropsType>
