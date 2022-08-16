@@ -49,14 +49,11 @@ const initialState = {
 
 export function dialogsReducer(state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType {
     if (action.type === ADD_MESSAGE) {
-        let message: MessageType = {message: action.newMessage}
-        state.messages.push(message)
-        state.newMessage = ''
+        return {...state, messages: [...state.messages, {message: action.newMessage}], newMessage: ''}
     } else if (action.type === CHANGE_MESSAGE_TEXT) {
-        state.newMessage = action.text
-        console.log(state.newMessage)
+        return {...state, newMessage: action.text}
     }
-    return state;
+    return {...state}
 }
 
 export const addMessageAC = (newMessage: string) => ({type: ADD_MESSAGE, newMessage} as const)
