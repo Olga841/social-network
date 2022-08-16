@@ -24,7 +24,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         addPost: (newPostElement: string) => (dispatch(addPostAC(newPostElement))),
-        onPostChange: (newPostElement: string) => (dispatch(changePostTextAC(newPostElement)))
+        updateNewPostText: (newPostElement: string) => (dispatch(changePostTextAC(newPostElement)))
     }
 }
 export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
