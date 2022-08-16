@@ -2,15 +2,10 @@ import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import {store, StoreType} from "./components/redux/redux-store";
+import {store} from "./components/redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import {Provider} from "react-redux";
-
-type PropsType = {
-    store: StoreType
-}
-
 
 ReactDOM.render(
     <Provider store={store}>
