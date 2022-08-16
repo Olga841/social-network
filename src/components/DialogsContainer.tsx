@@ -1,34 +1,28 @@
 import React from "react";
-import s from "./componrnts_styles/Dialogs.module.css";
-import {DialogItem, DialogItemPropsType} from "./DialogItem";
-import {Message, MessagePropsType} from "./Message";
-import {addMessageAC, changeMessageTextAC} from "./redux/store";
-import {StoreType} from "./redux/redux-store";
 import {Dialogs} from "./Dialogs";
+import {connect} from "react-redux";
+import {AppStateType} from "./redux/redux-store";
+import {Dispatch} from "redux";
+import {addMessageAC, changeMessageTextAC, DialogType, MessageType} from "./redux/dialogs-reducer";
 
-export type DialogsPropsType = {
-    store: StoreType
-    // dialogs: Array<DialogItemPropsType>
-    // messages: Array<MessagePropsType>
-    // dispatch: (action: any) => void
-    // newMessage: string
+type MapStatePropsType = {
+    dialogs: Array<DialogType>,
+    messages: Array<MessageType>
+    newMessage: string
 }
 
-export const DialogsContainer = (props: DialogsPropsType) => {
-    const newMessage = React.createRef<HTMLTextAreaElement>()
-    const addMessage = () => {
-        if (newMessage.current) {
-            props.store.dispatch(addMessageAC(newMessage.current.value))
-        }
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        newMessage: state.dialogsPage.newMessage
     }
-    const onMessageChange = () => {
-        if (newMessage.current) {
-            props.store.dispatch(changeMessageTextAC(newMessage.current.value))
-        }
-    }
-    return <Dialogs dialogs={props.store.getState().dialogsPage.dialogs}
-                    messages={props.store.getState().dialogsPage.messages}
-                    addMessage={addMessage}
-                    changeMessage={onMessageChange}
-                    newMessage={props.store.getState().dialogsPage.newMessage}/>
 }
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        addMessage: (newMessage: string) => (dispatch(addMessageAC(newMessage))),
+        onMessageChange: (newMessage: string) => (dispatch(changeMessageTextAC(newMessage)))
+    }
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
