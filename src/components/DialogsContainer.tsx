@@ -21,7 +21,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         addMessage: (newMessage: string) => (dispatch(addMessageAC(newMessage))),
-        onMessageChange: (newMessage: string) => (dispatch(changeMessageTextAC(newMessage)))
+        changeMessage: (newMessage: string) => (dispatch(changeMessageTextAC(newMessage)))
     }
 }
 
