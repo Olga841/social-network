@@ -5,7 +5,6 @@ import {ProfileInfo} from "./ProfileInfo";
 
 export type ProfilePropsType = {
     posts: Array<PostPropsType>
-    // dispatch: (action: any) => void
     addPost: (newPost: string) => void
     newPostText: string
     updateNewPostText: (newPostText: string) => void
@@ -15,13 +14,11 @@ export function Profile(props: ProfilePropsType) {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPost = () => {
         if (newPostElement.current) {
-            // props.dispatch(addPostAC(newPostElement.current.value));
             props.addPost(newPostElement.current.value)
         }
     }
     const onPostChange = () => {
         if (newPostElement.current) {
-            // props.dispatch(changePostTextAC(newPostElement.current.value))
             props.updateNewPostText(newPostElement.current.value)
         }
     }
