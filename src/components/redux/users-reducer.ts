@@ -62,7 +62,7 @@ const initialState: InitialStateType = {
 }
 
 
-export function dialogsReducer(state: InitialStateType = initialState, action: ActionsTypes): InitialStateType {
+export function usersReducer(state: InitialStateType = initialState, action: ActionsTypes): InitialStateType {
     if (action.type === FOLLOW) {
         return {
             ...state,
