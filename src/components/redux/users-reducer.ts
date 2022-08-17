@@ -37,7 +37,7 @@ const initialState: InitialStateType = {
         {
             id: 1,
             name: 'Vova',
-            photoURL: 'https://www.reddit.com/user/V-L-A-D-I-M-I-R/',
+            photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
             followed: true,
             status: 'I am a boss',
             location: {city: 'Minsk', country: 'Belarus'}
