@@ -5,6 +5,7 @@ import {Nav} from './components/Nav';
 import {HashRouter, Route, Routes} from "react-router-dom";
 import {ProfileContainer} from "./components/ProfileContainer";
 import {DialogsContainer} from "./components/DialogsContainer";
+import {UsersContainer} from "./components/UsersContainer";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                         <Route path='/profiles' element={<ProfileContainer/>}/>
                         <Route path='/' element={<ProfileContainer/>}/>
                         <Route path='/messages' element={<DialogsContainer/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
                     </Routes>
                 </div>
                 <footer className='footer'>x</footer>
