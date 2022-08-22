@@ -1,5 +1,5 @@
 import React from "react";
-
+import s from './componrnts_styles/Users.module.css'
 
 type UserType = {
     id: number,
@@ -24,28 +24,28 @@ type UsersPropsType = {
 export const Users = (props: UsersPropsType) => {
     props.setUsers([])
     return (<div>
-        {props.users.map(u => <div key={u.id}>
-        <span>
-            <div><img src={u.photoURL} alt={u.name}/></div>
-            <div>  {u.followed
-                ? <button onClick={() => {
-                    props.follow(u.id)
-                }}>unfollow</button>
-                : <button onClick={() => {
-                    props.unfollow(u.id)
-                }}>follow</button>}
+        {props.users.map(u => <div key={u.id} className={s.userContainer}>
+            <div className={s.avaBlock}>
+                <div><img src={u.photoURL} alt={u.name} className={s.photo}/></div>
+                <div>  {u.followed
+                    ? <button onClick={() => {
+                        props.follow(u.id)
+                    }}>unfollow</button>
+                    : <button onClick={() => {
+                        props.unfollow(u.id)
+                    }}>follow</button>}
+                </div>
             </div>
-        </span>
-            <span>
-            <div>
-                <div>{u.name}</div>
-                <div>{u.status}</div>
+            <div className={s.descriptionBlock}>
+                <div className={s.userNameStatus}>
+                    <div>{u.name}</div>
+                    <div>{u.status}</div>
+                </div>
+                <div>
+                    <span>{u.location.city}, </span>
+                    <span>{u.location.country}</span>
+                </div>
             </div>
-            <div>
-                <span>{u.location.city}, </span>
-                <span>{u.location.country}</span>
-            </div>
-        </span>
         </div>)}
     </div>)
 }
