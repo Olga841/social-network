@@ -14,7 +14,7 @@ export type LocationType = {
     city: string
     country: string
 }
-export type InitialStateType = {
+export type UsersPageType = {
     users: Array<UserType>
 }
 type Follow = {
@@ -27,12 +27,12 @@ type UnFollow = {
 }
 type SetUsers = {
     type: 'SET-USERS',
-    users: InitialStateType
+    users: UsersPageType
 }
 
 type ActionsTypes = Follow | UnFollow | SetUsers
 
-const initialState: InitialStateType = {
+const initialState: UsersPageType = {
     users: [
         {
             id: 1,
@@ -45,7 +45,7 @@ const initialState: InitialStateType = {
         {
             id: 2,
             name: 'Vitya',
-            photoURL: 'https://www.reddit.com/user/V-L-A-D-I-M-I-R/',
+            photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
             followed: false,
             status: 'I am a boss too',
             location: {city: 'London', country: 'GB'}
@@ -53,7 +53,7 @@ const initialState: InitialStateType = {
         {
             id: 3,
             name: 'Vasya',
-            photoURL: 'https://www.reddit.com/user/V-L-A-D-I-M-I-R/',
+            photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
             followed: true,
             status: 'Buy an elephant',
             location: {city: 'Paris', country: 'France'}
@@ -62,7 +62,7 @@ const initialState: InitialStateType = {
 }
 
 
-export function usersReducer(state: InitialStateType = initialState, action: ActionsTypes): InitialStateType {
+export function usersReducer(state: UsersPageType = initialState, action: ActionsTypes): UsersPageType {
     if (action.type === FOLLOW) {
         return {
             ...state,
@@ -91,4 +91,4 @@ export function usersReducer(state: InitialStateType = initialState, action: Act
 
 export const followAC = (userID: number) => ({type: FOLLOW, userID} as const)
 export const unfollowAC = (userID: number) => ({type: UNFOLLOW, userID} as const)
-export const setUsersAC = (users: InitialStateType) => ({type: SET_USERS, users} as const)
+export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
