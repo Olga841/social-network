@@ -27,37 +27,37 @@ type UnFollow = {
 }
 type SetUsers = {
     type: 'SET-USERS',
-    users: UsersPageType
+    users: Array<UserType>
 }
 
 type ActionsTypes = Follow | UnFollow | SetUsers
 
 const initialState: UsersPageType = {
     users: [
-        {
-            id: 1,
-            name: 'Vova',
-            photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
-            followed: true,
-            status: 'I am a boss',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 2,
-            name: 'Vitya',
-            photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
-            followed: false,
-            status: 'I am a boss too',
-            location: {city: 'London', country: 'GB'}
-        },
-        {
-            id: 3,
-            name: 'Vasya',
-            photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
-            followed: true,
-            status: 'Buy an elephant',
-            location: {city: 'Paris', country: 'France'}
-        },
+        // {
+        //     id: 1,
+        //     name: 'Vova',
+        //     photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
+        //     followed: true,
+        //     status: 'I am a boss',
+        //     location: {city: 'Minsk', country: 'Belarus'}
+        // },
+        // {
+        //     id: 2,
+        //     name: 'Vitya',
+        //     photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
+        //     followed: false,
+        //     status: 'I am a boss too',
+        //     location: {city: 'London', country: 'GB'}
+        // },
+        // {
+        //     id: 3,
+        //     name: 'Vasya',
+        //     photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
+        //     followed: true,
+        //     status: 'Buy an elephant',
+        //     location: {city: 'Paris', country: 'France'}
+        // },
     ],
 }
 
@@ -84,7 +84,7 @@ export function usersReducer(state: UsersPageType = initialState, action: Action
             })
         }
     } else if (action.type === SET_USERS) {
-        return {...state, ...action.users}
+        return {...state, users: action.users}
     }
     return {...state}
 }
