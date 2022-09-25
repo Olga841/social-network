@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import s from './componrnts_styles/Users.module.css'
 import axios from "axios";
+import users from "./UsersС";
 
 type UserType = {
     id: number,
@@ -23,12 +24,15 @@ type UsersPropsType = {
 
 
 export const Users = (props: UsersPropsType) => {
-    if (props.users.length === 0) {
+    useEffect(() => {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             props.setUsers(response.data.items)
         })
-    }
-    
+    }, [users.length])
+    // if (props.users.length === 0) {
+    //
+    // }
+
     return (<div>
         {props.users.map(u => <div key={u.id} className={s.userContainer}>
             <div className={s.avaBlock}>
