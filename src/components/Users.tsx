@@ -1,5 +1,6 @@
 import React from "react";
 import s from './componrnts_styles/Users.module.css'
+import axios from "axios";
 
 type UserType = {
     id: number,
@@ -22,7 +23,12 @@ type UsersPropsType = {
 
 
 export const Users = (props: UsersPropsType) => {
-    props.setUsers([])
+    if (props.users.length === 0) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items)
+        })
+    }
+    
     return (<div>
         {props.users.map(u => <div key={u.id} className={s.userContainer}>
             <div className={s.avaBlock}>
@@ -42,8 +48,8 @@ export const Users = (props: UsersPropsType) => {
                     <div>{u.status}</div>
                 </div>
                 <div>
-                    <span>{u.location.city}, </span>
-                    <span>{u.location.country}</span>
+                    <span>u.location.city </span>
+                    <span>u.location.country</span>
                 </div>
             </div>
         </div>)}
