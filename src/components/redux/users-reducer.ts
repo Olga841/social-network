@@ -1,6 +1,7 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 
 export type UserType = {
     id: number,
@@ -16,6 +17,10 @@ export type LocationType = {
 }
 export type UsersPageType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+
 }
 type Follow = {
     type: 'FOLLOW'
@@ -27,38 +32,22 @@ type UnFollow = {
 }
 type SetUsers = {
     type: 'SET-USERS',
-    users: Array<UserType>
+    users: Array<UserType>,
+    totalCount: number
 }
 
-type ActionsTypes = Follow | UnFollow | SetUsers
+type SetCurrentPage = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
+}
+
+type ActionsTypes = Follow | UnFollow | SetUsers | SetCurrentPage
 
 const initialState: UsersPageType = {
-    users: [
-        // {
-        //     id: 1,
-        //     name: 'Vova',
-        //     photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
-        //     followed: true,
-        //     status: 'I am a boss',
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 2,
-        //     name: 'Vitya',
-        //     photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
-        //     followed: false,
-        //     status: 'I am a boss too',
-        //     location: {city: 'London', country: 'GB'}
-        // },
-        // {
-        //     id: 3,
-        //     name: 'Vasya',
-        //     photoURL: 'https://cdn.icon-icons.com/icons2/1371/PNG/512/vladimirlenin_90818.png',
-        //     followed: true,
-        //     status: 'Buy an elephant',
-        //     location: {city: 'Paris', country: 'France'}
-        // },
-    ],
+    users: [],
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 
@@ -84,11 +73,18 @@ export function usersReducer(state: UsersPageType = initialState, action: Action
             })
         }
     } else if (action.type === SET_USERS) {
-        return {...state, users: action.users}
+        return {...state, users: action.users, totalUsersCount: action.totalCount}
+    } else if (action.type === SET_CURRENT_PAGE) {
+        return {...state, currentPage: action.currentPage}
     }
     return {...state}
 }
 
 export const followAC = (userID: number) => ({type: FOLLOW, userID} as const)
 export const unfollowAC = (userID: number) => ({type: UNFOLLOW, userID} as const)
-export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
+export const setUsersAC = (users: Array<UserType>, totalCount: number) => ({
+    type: SET_USERS,
+    users,
+    totalCount
+} as const)
+export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
