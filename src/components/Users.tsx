@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import s from './componrnts_styles/Users.module.css'
 import axios from "axios";
-import users from "./UsersС";
+// import users from "./UsersС";
 
 type UserType = {
     id: number,
@@ -20,20 +20,34 @@ type UsersPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     setUsers: (users: Array<UserType>) => void
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    setCurrentPage: (currentPage: number) => void
 }
 
 
 export const Users = (props: UsersPropsType) => {
     useEffect(() => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then(response => {
             props.setUsers(response.data.items)
         })
-    }, [users.length])
-    // if (props.users.length === 0) {
-    //
-    // }
+    }, [props.users.length, props.currentPage, props.pageSize])
+
+    let pagesCount = Math.ceil((props.totalUsersCount / props.pageSize))
+    let pages = []
+    for (let i = 1; i < pagesCount; i++) {
+        pages.push(i)
+    }
 
     return (<div>
+        <div>
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? s.selectedPage : ''}
+                             onClick={() => props.setCurrentPage(p)}>{p}</span>
+            })}
+
+        </div>
         {props.users.map(u => <div key={u.id} className={s.userContainer}>
             <div className={s.avaBlock}>
                 <div><img src={u.photoURL} alt={u.name} className={s.photo}/></div>
