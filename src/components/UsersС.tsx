@@ -1,6 +1,7 @@
 import React from "react";
 import s from './componrnts_styles/Users.module.css'
 import axios from "axios";
+import userAvatar from './../images/493fa0f13970ab3ef29375669f670451.jpg'
 
 type UserType = {
     id: number,
@@ -8,6 +9,7 @@ type UserType = {
     photoURL: string,
     followed: boolean,
     status: string,
+    photos: { small: string, large: string }
     location: LocationType
 }
 type LocationType = {
@@ -46,7 +48,8 @@ export const Users = (props: UsersPropsType) => {
         </div>
         {props.users.map(u => <div key={u.id} className={s.userContainer}>
             <div className={s.avaBlock}>
-                <div><img src={u.photoURL} alt={u.name} className={s.photo}/></div>
+                <div><img src={u.photos.small !== null ? u.photos.small : userAvatar} alt={u.name} className={s.photo}/>
+                </div>
                 <div>  {u.followed
                     ? <button onClick={() => {
                         props.follow(u.id)
