@@ -1,6 +1,5 @@
 import React from "react";
 import s from './componrnts_styles/Users.module.css'
-import axios from "axios";
 import userAvatar from './../images/493fa0f13970ab3ef29375669f670451.jpg'
 
 type UserType = {

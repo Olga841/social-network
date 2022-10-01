@@ -10,6 +10,7 @@ export type UserType = {
     photoURL: string,
     followed: boolean,
     status: string,
+    photos: { small: string, large: string }
     location: LocationType
 }
 export type LocationType = {
