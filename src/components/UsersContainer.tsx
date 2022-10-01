@@ -2,7 +2,6 @@ import React from "react";
 import {connect} from "react-redux";
 import {follow, setCurrentPage, setUsers, toggleIsFetching, unfollow, UserType} from "./redux/users-reducer";
 import {AppStateType} from "./redux/redux-store";
-import {Dispatch} from "redux";
 import UsersAPIComponent from "./UsersAPIС";
 
 

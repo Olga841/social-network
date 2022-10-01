@@ -1,21 +1,9 @@
 import React from "react";
-import s from './componrnts_styles/Users.module.css'
 import axios from "axios";
 import {Users} from "./UsersС";
 import preloader from './../images/Heart-1s-200px.gif'
+import {UserType} from "./redux/users-reducer";
 
-type UserType = {
-    id: number,
-    name: string,
-    photoURL: string,
-    followed: boolean,
-    status: string,
-    location: LocationType
-}
-type LocationType = {
-    city: string
-    country: string
-}
 type UsersPropsType = {
     users: Array<UserType>,
     follow: (userID: number) => void
