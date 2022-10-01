@@ -2,6 +2,7 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const IS_FETCHING = 'IS_FETCHING'
 
 export type UserType = {
     id: number,
@@ -20,6 +21,7 @@ export type UsersPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 
 }
 type Follow = {
@@ -40,14 +42,19 @@ type SetCurrentPage = {
     type: 'SET-CURRENT-PAGE'
     currentPage: number
 }
+type ToggleIsFetching = {
+    type: 'IS_FETCHING'
+    isFetching: boolean
+}
 
-type ActionsTypes = Follow | UnFollow | SetUsers | SetCurrentPage
+type ActionsTypes = Follow | UnFollow | SetUsers | SetCurrentPage | ToggleIsFetching
 
 const initialState: UsersPageType = {
     users: [],
     pageSize: 100,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 
@@ -76,6 +83,8 @@ export function usersReducer(state: UsersPageType = initialState, action: Action
         return {...state, users: action.users, totalUsersCount: action.totalCount}
     } else if (action.type === SET_CURRENT_PAGE) {
         return {...state, currentPage: action.currentPage}
+    } else if (action.type === IS_FETCHING) {
+        return {...state, isFetching: action.isFetching}
     }
     return {...state}
 }
@@ -88,3 +97,4 @@ export const setUsersAC = (users: Array<UserType>, totalCount: number) => ({
     totalCount
 } as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: IS_FETCHING, isFetching} as const)
