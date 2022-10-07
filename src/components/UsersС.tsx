@@ -1,6 +1,7 @@
 import React from "react";
 import s from './componrnts_styles/Users.module.css'
 import userAvatar from './../images/493fa0f13970ab3ef29375669f670451.jpg'
+import {NavLink} from "react-router-dom";
 
 type UserType = {
     id: number,
@@ -30,7 +31,6 @@ type UsersPropsType = {
 
 
 export const Users = (props: UsersPropsType) => {
-    console.log(props)
     let pagesCount = Math.ceil((props.totalUsersCount / props.pageSize))
     let pages = []
     for (let i = 1; i < pagesCount; i++) {
@@ -47,8 +47,11 @@ export const Users = (props: UsersPropsType) => {
         </div>
         {props.users.map(u => <div key={u.id} className={s.userContainer}>
             <div className={s.avaBlock}>
-                <div><img src={u.photos.small !== null ? u.photos.small : userAvatar} alt={u.name} className={s.photo}/>
-                </div>
+                <NavLink to={`/profile/${u.id}`}>
+                    <div><img src={u.photos.small !== null ? u.photos.small : userAvatar} alt={u.name}
+                              className={s.photo}/>
+                    </div>
+                </NavLink>
                 <div>  {u.followed
                     ? <button onClick={() => {
                         props.follow(u.id)
