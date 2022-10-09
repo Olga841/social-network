@@ -1,9 +1,12 @@
-import React from "react";
-import {Profile} from "./Profile";
-import {connect} from "react-redux";
+import React, {ComponentType} from "react";
+import {connect, MapDispatchToProps} from "react-redux";
 import {AppStateType} from "./redux/redux-store";
-import {Dispatch} from "redux";
-import {addPostAC, changePostTextAC} from "./redux/profile-reducer";
+import {addPost, changePostText, setUserProfile, toggleIsFetching, UserProfileInfoType} from "./redux/profile-reducer";
+import ProfileAPIComponent, {PostPropsType} from "./ProfileAPIContainer";
+import {Params, useParams} from "react-router-dom";
+import {ProfilePropsType} from "./Profile";
+import {MapStatePropsType} from "./UsersContainer";
+
 
 type PostType = {
     post: string
@@ -12,19 +15,28 @@ type PostType = {
 type mapStateToPropsType = {
     posts: Array<PostType>
     newPostText: string
+    info: UserProfileInfoType
+    isFetching: boolean
 }
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        newPostText: state.profilePage.newPostText,
+        info: state.profilePage.info,
+        isFetching: state.profilePage.isFetching
     }
+}
+// export const params = useParams()
+const WithUrlDataContainerComponent = (props: Omit<PostPropsType, 'params'>) => {
+    return <ProfileAPIComponent {...props} params={useParams()}/>
+
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        addPost: (newPostElement: string) => (dispatch(addPostAC(newPostElement))),
-        updateNewPostText: (newPostElement: string) => (dispatch(changePostTextAC(newPostElement)))
-    }
-}
-export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
+
+export const ProfileContainer = connect(mapStateToProps, {
+    addPost,
+    changePostText,
+    setUserProfile,
+    toggleIsFetching
+})(WithUrlDataContainerComponent)
