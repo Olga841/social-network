@@ -2,22 +2,23 @@ import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
 import {Nav} from './components/Nav';
-import {HashRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route, Routes, useParams} from "react-router-dom";
 import {ProfileContainer} from "./components/ProfileContainer";
 import {DialogsContainer} from "./components/DialogsContainer";
 import {UsersContainer} from "./components/UsersContainer";
+import {HeaderContainer} from "./components/HeaderContainer";
 
 
 function App() {
 
     return (
-        <HashRouter>
+        <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Nav/>
                 <div className="content">
                     <Routes>
-                        <Route path='/profiles' element={<ProfileContainer/>}/>
+                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                         <Route path='/' element={<ProfileContainer/>}/>
                         <Route path='/messages' element={<DialogsContainer/>}/>
                         <Route path='/users' element={<UsersContainer/>}/>
@@ -25,7 +26,7 @@ function App() {
                 </div>
                 <footer className='footer'>x</footer>
             </div>
-        </HashRouter>
+        </BrowserRouter>
     );
 }
 
