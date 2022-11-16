@@ -5,12 +5,13 @@ export type PostType = {
     post: string
     like: string
 }
+export type ResponseDataType = {
+    id: number
+    email: string | null
+    login: string | null
+}
 export type AuthType = {
-    data: {
-        id: number | null
-        email: string | null
-        login: string | null
-    }
+    data: ResponseDataType
     isFetching: boolean
 }
 
@@ -26,7 +27,7 @@ type ActionsTypes = setAuthData | ToggleIsFetching
 
 const initialState: AuthType = {
     data: {
-        id: null,
+        id: 0,
         email: null,
         login: null
     },
@@ -45,5 +46,5 @@ export function authReducer(state: AuthType = initialState, action: ActionsTypes
     return {...state}
 }
 
-export const setAuthData = (data: AuthType) => ({type: SET_AUTH_DATA, data} as const)
+export const setAuthData = (data: ResponseDataType) => ({type: SET_AUTH_DATA, data} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: IS_FETCHING, isFetching} as const)
