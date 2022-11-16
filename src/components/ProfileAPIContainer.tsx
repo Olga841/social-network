@@ -22,13 +22,16 @@ export type PostPropsType = {
 class ProfileAPIComponent extends React.Component<PostPropsType> {
     componentDidMount = () => {
         let userId = this.props.params.userId
-        // if (!userId) {
+        // if (!userId)
         //     userId = '1059'
         // }
+        console.log(this.props.params)
         this.props.toggleIsFetching(true)
         console.log('didmount', this.props)
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+            debugger
             this.props.toggleIsFetching(false)
+            console.log(response.data)
             this.props.setUserProfile(response.data)
         })
     }
@@ -39,7 +42,8 @@ class ProfileAPIComponent extends React.Component<PostPropsType> {
                 <Preloader/>
                 : <Profile addPost={this.props.addPost} newPostText={this.props.newPostText}
                            updateNewPostText={this.props.changePostText} posts={this.props.posts}
-                           info={this.props.info} setUserProfile={this.props.setUserProfile}/>}
+                           info={this.props.info} setUserProfile={this.props.setUserProfile}
+                           params={this.props.params}/>}
 
 
         </>
