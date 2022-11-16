@@ -1,5 +1,5 @@
 import React from "react";
-import s from './componrnts_styles/main.module.css'
+import s from './components_styles/main.module.css'
 import {Post, PostPropsType} from "./Post";
 import {ProfileInfo} from "./ProfileInfo";
 import {UserProfileInfoType} from "./redux/profile-reducer";
