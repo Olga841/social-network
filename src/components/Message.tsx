@@ -1,4 +1,4 @@
-import s from "./componrnts_styles/Dialogs.module.css";
+import s from "./components_styles/Dialogs.module.css";
 import React from "react";
 import {FriendInfo} from "./FriendInfo";
 
