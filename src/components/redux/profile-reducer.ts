@@ -36,7 +36,7 @@ export type UserProfileInfoType = {
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null,
     fullName: string | null,
-    userId: 2,
+    userId: number,
     photos: {
         small: string | undefined,
         large: string | undefined
