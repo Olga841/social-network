@@ -51,7 +51,20 @@ type ToggleIsFetching = {
 type ActionsTypes = Follow | UnFollow | SetUsers | SetCurrentPage | ToggleIsFetching
 
 const initialState: UsersPageType = {
-    users: [],
+    users: [
+        {
+            id: 1254,
+            name: 'string',
+            photoURL: 'string',
+            followed: false,
+            status: 'string',
+            photos: {small: 'string', large: 'string'},
+            location: {
+                city: 'string',
+                country: 'string'
+            }
+        }
+    ],
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
@@ -61,11 +74,12 @@ const initialState: UsersPageType = {
 
 export function usersReducer(state: UsersPageType = initialState, action: ActionsTypes): UsersPageType {
     if (action.type === FOLLOW) {
+        console.log(action.userID)
         return {
             ...state,
             users: state.users.map(u => {
                 if (u.id === action.userID) {
-                    return {...u, followed: false}
+                    return {...u, followed: true}
                 }
                 return u
             })
@@ -75,7 +89,7 @@ export function usersReducer(state: UsersPageType = initialState, action: Action
             ...state,
             users: state.users.map(u => {
                 if (u.id === action.userID) {
-                    return {...u, followed: true}
+                    return {...u, followed: false}
                 }
                 return u
             })
