@@ -1,5 +1,5 @@
 import React from 'react'
-import s from './componrnts_styles/nav.module.css';
+import s from './components_styles/nav.module.css';
 import {FriendInfo} from "./FriendInfo";
 
 export function Sidebar() {

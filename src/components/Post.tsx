@@ -1,5 +1,5 @@
 import React from "react";
-import './componrnts_styles/item.css';
+import './components_styles/item.css';
 
 
 export type PostPropsType = {

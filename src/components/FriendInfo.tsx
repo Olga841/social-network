@@ -1,4 +1,4 @@
-import s from "./componrnts_styles/nav.module.css";
+import s from "./components_styles/nav.module.css";
 import React from "react";
 
 export function FriendInfo() {
