@@ -17,8 +17,18 @@ export const usersAPI = {
             return response
         })
     },
-    followUnfollowUser(userId: number) {
+    followUser(userId: number) {
         return axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'cf66b916-fda5-47ac-9f68-3fafeff56e6d'
+            }
+        }).then(response => {
+            return response
+        })
+    },
+    unfollowUser(userId: number) {
+        return axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
             withCredentials: true,
             headers: {
                 'API-KEY': 'cf66b916-fda5-47ac-9f68-3fafeff56e6d'
