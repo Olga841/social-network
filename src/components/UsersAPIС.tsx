@@ -4,6 +4,7 @@ import {Users} from "./UsersС";
 import preloader from './../images/Heart-1s-200px.gif'
 import {UserType} from "./redux/users-reducer";
 import {Preloader} from "./Preloader";
+import {usersAPI} from "../api/api";
 
 type UsersPropsType = {
     users: Array<UserType>,
@@ -22,22 +23,19 @@ type UsersPropsType = {
 class UsersAPIComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        }).then(response => {
+        usersAPI.getAllUsers(this.props.currentPage, this.props.pageSize).then(response => {
+            debugger
             this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items, response.data.totalCount)
-        })
+        }) as Promise<any>
     }
 
     getUsersFromPage = (page: number) => {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        }).then(response => {
-            this.props.toggleIsFetching(false)
+        usersAPI.getUsersForPage(page, this.props.pageSize).then(response => {
             this.props.setUsers(response.data.items, response.data.totalCount)
         })
+        this.props.toggleIsFetching(false)
         this.props.setCurrentPage(page)
     }
 
