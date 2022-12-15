@@ -38,3 +38,16 @@ export const usersAPI = {
         })
     }
 }
+
+export const profileAPI = {
+    getUserProfile(userId: string | undefined) {
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'cf66b916-fda5-47ac-9f68-3fafeff56e6d'
+            }
+        }).then(response => {
+            return response
+        })
+    }
+}
