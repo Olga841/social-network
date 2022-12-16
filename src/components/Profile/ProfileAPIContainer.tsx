@@ -1,11 +1,10 @@
 import React from "react";
 import {Profile} from "./Profile";
-import {changePostText, PostType, UserProfileInfoType} from "../redux/profile-reducer";
-import axios from "axios";
+import {PostType, UserProfileInfoType} from "../redux/profile-reducer";
 
 import {Preloader} from "../CommonComponents/Preloader";
 import {Params} from "react-router-dom";
-import {profileAPI, usersAPI} from "../../api/api";
+import {profileAPI} from "../../api/api";
 
 
 export type PostPropsType = {
@@ -23,16 +22,9 @@ export type PostPropsType = {
 class ProfileAPIComponent extends React.Component<PostPropsType> {
     componentDidMount = () => {
         let userId = this.props.params.userId
-        // if (!userId)
-        //     userId = '1059'
-        // }
-        console.log(this.props.params)
         this.props.toggleIsFetching(true)
-        console.log('didmount', this.props)
         profileAPI.getUserProfile(userId).then(response => {
-            debugger
             this.props.toggleIsFetching(false)
-            console.log(response.data)
             this.props.setUserProfile(response.data)
         })
     }
@@ -45,8 +37,6 @@ class ProfileAPIComponent extends React.Component<PostPropsType> {
                            updateNewPostText={this.props.changePostText} posts={this.props.posts}
                            info={this.props.info} setUserProfile={this.props.setUserProfile}
                            params={this.props.params}/>}
-
-
         </>
     }
 }
