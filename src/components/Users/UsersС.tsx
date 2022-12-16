@@ -41,7 +41,7 @@ export const Users = (props: UsersPropsType) => {
         <div>
             {pages.map(p => {
 
-                return <span className={props.currentPage === p ? s.selectedPage : ''}
+                return <span key={props.currentPage} className={props.currentPage === p ? s.selectedPage : ''}
                              onClick={() => props.getUsersFromPage(p)}>{p + ' '}</span>
             })}
 
