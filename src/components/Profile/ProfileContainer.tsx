@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {AppStateType} from "./redux/redux-store";
-import {addPost, changePostText, setUserProfile, toggleIsFetching, UserProfileInfoType} from "./redux/profile-reducer";
+import {AppStateType} from "../redux/redux-store";
+import {addPost, changePostText, setUserProfile, toggleIsFetching, UserProfileInfoType} from "../redux/profile-reducer";
 import ProfileAPIComponent, {PostPropsType} from "./ProfileAPIContainer";
 import {useParams} from "react-router-dom";
 
