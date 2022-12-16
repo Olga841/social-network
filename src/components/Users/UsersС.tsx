@@ -27,7 +27,8 @@ type UsersPropsType = {
     currentPage: number
     setCurrentPage: (currentPage: number) => void
     getUsersFromPage: (page: number) => void
-
+    disabled: boolean
+    toggleDisabled: (disabled: boolean) => void
 }
 
 
@@ -37,6 +38,7 @@ export const Users = (props: UsersPropsType) => {
     for (let i = 1; i < pagesCount; i++) {
         pages.push(i)
     }
+
     return (<div>
         <div>
             {pages.map((p, index) => {
@@ -55,21 +57,27 @@ export const Users = (props: UsersPropsType) => {
                 </NavLink>
                 <div>  {!u.followed
                     ? <button
+                        disabled={props.disabled}
                         onClick={() => {
+                            props.toggleDisabled(true)
                             usersAPI.followUser(u.id).then(response => {
                                 if (response.data.resultCode === 0) {
                                     props.follow(u.id)
                                     console.log(u.followed)
+                                    props.toggleDisabled(false)
                                 }
                             })
                         }}
                     >follow</button>
                     : <button
+                        disabled={props.disabled}
                         onClick={() => {
+                            props.toggleDisabled(true)
                             usersAPI.unfollowUser(u.id).then(response => {
                                 if (response.data.resultCode === 0) {
                                     props.unfollow(u.id)
                                     console.log(u.followed)
+                                    props.toggleDisabled(false)
                                 }
                             })
                         }}
