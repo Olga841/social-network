@@ -23,7 +23,7 @@ function App() {
                     <Routes>
                         {/*<Route path='/' element={<Navigate to={"/profile/" + userId}/>}/>*/}
                         <Route path='/profile' element={<ProfileContainer/>}>
-                            <Route path=':' element={<ProfileContainer/>}/>
+                            {/*<Route path=':' element={<ProfileContainer/>}/>*/}
                             <Route path=':userId' element={<ProfileContainer/>}/>
                         </Route>
                         <Route path='/messages' element={<DialogsContainer/>}/>
