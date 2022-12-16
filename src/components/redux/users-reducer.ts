@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const IS_FETCHING = 'IS_FETCHING'
+const DISABLED = 'DISABLED'
 
 export type UserType = {
     id: number,
@@ -23,7 +24,7 @@ export type UsersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-
+    disabled: boolean
 }
 type Follow = {
     type: 'FOLLOW'
@@ -47,8 +48,12 @@ type ToggleIsFetching = {
     type: 'IS_FETCHING'
     isFetching: boolean
 }
+type ToggleDisabled = {
+    type: 'DISABLED'
+    disabled: boolean
+}
 
-type ActionsTypes = Follow | UnFollow | SetUsers | SetCurrentPage | ToggleIsFetching
+type ActionsTypes = Follow | UnFollow | SetUsers | SetCurrentPage | ToggleIsFetching | ToggleDisabled
 
 const initialState: UsersPageType = {
     users: [
@@ -68,38 +73,41 @@ const initialState: UsersPageType = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    disabled: false
 }
 
 
 export function usersReducer(state: UsersPageType = initialState, action: ActionsTypes): UsersPageType {
-    if (action.type === FOLLOW) {
-        console.log(action.userID)
-        return {
-            ...state,
-            users: state.users.map(u => {
-                if (u.id === action.userID) {
-                    return {...u, followed: true}
-                }
-                return u
-            })
-        }
-    } else if (action.type === UNFOLLOW) {
-        return {
-            ...state,
-            users: state.users.map(u => {
-                if (u.id === action.userID) {
-                    return {...u, followed: false}
-                }
-                return u
-            })
-        }
-    } else if (action.type === SET_USERS) {
-        return {...state, users: action.users, totalUsersCount: action.totalCount}
-    } else if (action.type === SET_CURRENT_PAGE) {
-        return {...state, currentPage: action.currentPage}
-    } else if (action.type === IS_FETCHING) {
-        return {...state, isFetching: action.isFetching}
+    switch (action.type) {
+        case FOLLOW:
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userID) {
+                        return {...u, followed: true}
+                    }
+                    return u
+                })
+            }
+        case UNFOLLOW:
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userID) {
+                        return {...u, followed: false}
+                    }
+                    return u
+                })
+            }
+        case SET_USERS:
+            return {...state, users: action.users, totalUsersCount: action.totalCount}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+        case IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
+        case DISABLED:
+            return {...state, disabled: action.disabled}
     }
     return {...state}
 }
@@ -113,3 +121,4 @@ export const setUsers = (users: Array<UserType>, totalCount: number) => ({
 } as const)
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: IS_FETCHING, isFetching} as const)
+export const toggleDisabled = (disabled: boolean) => ({type: DISABLED, disabled} as const)
