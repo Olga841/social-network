@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {AppStateType} from "./redux/redux-store";
 
 export function Nav() {
-    const userId = useSelector<AppStateType, number | null>(state => state.auth.data.id)
+    const userId = useSelector<AppStateType, number | null>(state => state.auth.response.data.id)
 
     return (
         <div className={s.nav}>
