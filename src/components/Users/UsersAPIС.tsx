@@ -1,10 +1,8 @@
 import React from "react";
-import axios from "axios";
 import {Users} from "./UsersС";
-import preloader from './../images/Heart-1s-200px.gif'
-import {UserType} from "./redux/users-reducer";
-import {Preloader} from "./Preloader";
-import {usersAPI} from "../api/api";
+import {UserType} from "../redux/users-reducer";
+import {Preloader} from "../CommonComponents/Preloader";
+import {usersAPI} from "../../api/api";
 
 type UsersPropsType = {
     users: Array<UserType>,
@@ -27,7 +25,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
             debugger
             this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items, response.data.totalCount)
-        }) as Promise<any>
+        })
     }
 
     getUsersFromPage = (page: number) => {
