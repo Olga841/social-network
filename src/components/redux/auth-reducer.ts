@@ -6,12 +6,16 @@ export type PostType = {
     like: string
 }
 export type ResponseDataType = {
-    id: number
-    email: string | null
-    login: string | null
+    data: {
+        id: number | null
+        email: string | null
+        login: string | null
+    }
+    resultCode: number | null
+    messages: string | null
 }
 export type AuthType = {
-    data: ResponseDataType
+    response: ResponseDataType
     isFetching: boolean
 }
 
@@ -26,10 +30,14 @@ type ToggleIsFetching = {
 type ActionsTypes = setAuthData | ToggleIsFetching
 
 const initialState: AuthType = {
-    data: {
-        id: 0,
-        email: null,
-        login: null
+    response: {
+        data: {
+            id: null,
+            email: null,
+            login: null
+        },
+        resultCode: null,
+        messages: null
     },
     isFetching: false
 }
