@@ -15,6 +15,8 @@ type UsersPropsType = {
     setCurrentPage: (currentPage: number) => void
     isFetching: boolean
     toggleIsFetching: (isFetching: boolean) => void
+    disabled: boolean
+    toggleDisabled: (disabled: boolean) => void
 }
 
 
@@ -48,6 +50,8 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
                                                            currentPage={this.props.currentPage}
                                                            setCurrentPage={this.props.setCurrentPage}
                                                            getUsersFromPage={this.getUsersFromPage}
+                                                           disabled={this.props.disabled}
+                                                           toggleDisabled={this.props.toggleDisabled}
             />}
 
         </>
