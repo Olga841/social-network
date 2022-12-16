@@ -1,9 +1,8 @@
 import React from "react";
-import s from './components_styles/Users.module.css'
-import userAvatar from './../images/493fa0f13970ab3ef29375669f670451.jpg'
+import s from '../components_styles/Users.module.css'
+import userAvatar from '../../images/493fa0f13970ab3ef29375669f670451.jpg'
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../api/api";
+import {usersAPI} from "../../api/api";
 
 type UserType = {
     id: number,
