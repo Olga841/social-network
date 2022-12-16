@@ -17,13 +17,13 @@ class HeaderContainer extends React.Component <AuthPropsType> {
         axios.get(`https://social-network.samuraijs.com/api/1.1/auth/me`, {withCredentials: true}).then(response => {
             if (response.data.resultCode === 0) {
                 this.props.setAuthData(response.data.data)
-                console.log(response.data.data)
+                this.props.response.data = response.data.data
             }
         })
     }
 
     render() {
-        return <Header {...this.props}/>
+        return <Header data={this.props.response.data}/>
     }
 
 }
