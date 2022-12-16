@@ -1,11 +1,11 @@
 import React from "react";
 import {Profile} from "./Profile";
-import {changePostText, PostType, UserProfileInfoType} from "./redux/profile-reducer";
+import {changePostText, PostType, UserProfileInfoType} from "../redux/profile-reducer";
 import axios from "axios";
 
-import {Preloader} from "./Preloader";
+import {Preloader} from "../CommonComponents/Preloader";
 import {Params} from "react-router-dom";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../../api/api";
 
 
 export type PostPropsType = {
@@ -29,7 +29,7 @@ class ProfileAPIComponent extends React.Component<PostPropsType> {
         console.log(this.props.params)
         this.props.toggleIsFetching(true)
         console.log('didmount', this.props)
-        usersAPI.getAllUsers(1, 2).then(response => {
+        profileAPI.getUserProfile(userId).then(response => {
             debugger
             this.props.toggleIsFetching(false)
             console.log(response.data)
