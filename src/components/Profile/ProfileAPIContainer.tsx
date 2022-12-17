@@ -4,7 +4,6 @@ import {PostType, UserProfileInfoType} from "../redux/profile-reducer";
 
 import {Preloader} from "../CommonComponents/Preloader";
 import {Params} from "react-router-dom";
-import {profileAPI} from "../../api/api";
 
 
 export type PostPropsType = {
@@ -17,16 +16,18 @@ export type PostPropsType = {
     isFetching: boolean,
     toggleIsFetching: (isToggle: boolean) => void
     params: Params
+    getUsersProfileThunkCreator: (userId: string | undefined) => void
 }
 
 class ProfileAPIComponent extends React.Component<PostPropsType> {
     componentDidMount = () => {
         let userId = this.props.params.userId
-        this.props.toggleIsFetching(true)
-        profileAPI.getUserProfile(userId).then(response => {
-            this.props.toggleIsFetching(false)
-            this.props.setUserProfile(response.data)
-        })
+        this.props.getUsersProfileThunkCreator(userId)
+        // this.props.toggleIsFetching(true)
+        // profileAPI.getUserProfile(userId).then(response => {
+        //     this.props.toggleIsFetching(false)
+        //     this.props.setUserProfile(response.data)
+        // })
     }
 
     render() {
