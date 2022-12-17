@@ -143,3 +143,13 @@ export const getUsersFromPageThunkCreator = (page: number, pageSize: number) => 
     dispatch(toggleIsFetching(false))
     dispatch(setCurrentPage(page))
 }
+
+export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleDisabled(true))
+    usersAPI.followUser(userId).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(follow(userId))
+            dispatch(toggleDisabled(false))
+        }
+    })
+}
