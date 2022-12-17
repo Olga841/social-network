@@ -23,11 +23,6 @@ class ProfileAPIComponent extends React.Component<PostPropsType> {
     componentDidMount = () => {
         let userId = this.props.params.userId
         this.props.getUsersProfileThunkCreator(userId)
-        // this.props.toggleIsFetching(true)
-        // profileAPI.getUserProfile(userId).then(response => {
-        //     this.props.toggleIsFetching(false)
-        //     this.props.setUserProfile(response.data)
-        // })
     }
 
     render() {
