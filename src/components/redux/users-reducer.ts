@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../../api/api";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
@@ -122,3 +125,12 @@ export const setUsers = (users: Array<UserType>, totalCount: number) => ({
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: IS_FETCHING, isFetching} as const)
 export const toggleDisabled = (disabled: boolean) => ({type: DISABLED, disabled} as const)
+
+export const getAllUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true))
+    usersAPI.getAllUsers(currentPage, pageSize).then(response => {
+        debugger
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(response.data.items, response.data.totalCount))
+    })
+}
