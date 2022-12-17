@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {
     follow,
+    getAllUsersThunkCreator,
     setCurrentPage,
     setUsers,
     toggleDisabled,
@@ -39,5 +40,5 @@ export const UsersContainer = connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     toggleIsFetching,
-    toggleDisabled
+    toggleDisabled, getAllUsersThunkCreator
 })(UsersAPIComponent)

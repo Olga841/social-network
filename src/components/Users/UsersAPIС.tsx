@@ -17,17 +17,13 @@ type UsersPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
     disabled: boolean
     toggleDisabled: (disabled: boolean) => void
+    getAllUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
 
 class UsersAPIComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersAPI.getAllUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            debugger
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(response.data.items, response.data.totalCount)
-        })
+        this.props.getAllUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     getUsersFromPage = (page: number) => {
