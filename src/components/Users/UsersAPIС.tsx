@@ -5,7 +5,6 @@ import {Preloader} from "../CommonComponents/Preloader";
 
 type UsersPropsType = {
     users: Array<UserType>,
-    follow: (userID: number) => void
     unfollow: (userID: number) => void
     pageSize: number
     totalUsersCount: number
@@ -15,6 +14,7 @@ type UsersPropsType = {
     toggleDisabled: (disabled: boolean) => void
     getAllUsersThunkCreator: (currentPage: number, pageSize: number) => void
     getUsersFromPageThunkCreator: (page: number, pageSize: number) => void
+    followThunkCreator: (userId: number) => void
 }
 
 
@@ -31,7 +31,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : <Users users={this.props.users}
-                                                           follow={this.props.follow}
+                                                           follow={this.props.followThunkCreator}
                                                            unfollow={this.props.unfollow}
                                                            pageSize={this.props.pageSize}
                                                            totalUsersCount={this.props.totalUsersCount}

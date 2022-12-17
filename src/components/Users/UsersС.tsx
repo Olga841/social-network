@@ -57,14 +57,7 @@ export const Users = (props: UsersPropsType) => {
                     ? <button
                         disabled={props.disabled}
                         onClick={() => {
-                            props.toggleDisabled(true)
-                            usersAPI.followUser(u.id).then(response => {
-                                if (response.data.resultCode === 0) {
-                                    props.follow(u.id)
-                                    console.log(u.followed)
-                                    props.toggleDisabled(false)
-                                }
-                            })
+                            props.follow(u.id)
                         }}
                     >follow</button>
                     : <button
