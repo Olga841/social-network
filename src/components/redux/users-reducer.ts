@@ -153,3 +153,13 @@ export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
         }
     })
 }
+
+export const unfollowThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleDisabled(true))
+    usersAPI.unfollowUser(userId).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(unfollow(userId))
+            dispatch(toggleDisabled(false))
+        }
+    })
+}
