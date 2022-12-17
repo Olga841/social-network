@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {profileAPI} from "../../api/api";
+
 const ADD_POST = 'ADD-POST'
 const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -6,6 +9,7 @@ export type PostType = {
     post: string
     like: string
 }
+
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string,
@@ -107,3 +111,11 @@ export const addPost = (newPost: string) => ({type: ADD_POST, newPost} as const)
 export const changePostText = (text: string) => ({type: CHANGE_POST_TEXT, text} as const)
 export const setUserProfile = (info: UserProfileInfoType) => ({type: SET_USER_PROFILE, info} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: IS_FETCHING, isFetching} as const)
+
+export const getUsersProfileThunkCreator = (userId: string | undefined) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true))
+    profileAPI.getUserProfile(userId).then(response => {
+        dispatch(toggleIsFetching(false))
+        dispatch(setUserProfile(response.data))
+    })
+}
