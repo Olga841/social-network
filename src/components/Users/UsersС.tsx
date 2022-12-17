@@ -21,11 +21,9 @@ type UsersPropsType = {
     users: Array<UserType>,
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    setUsers: (users: Array<UserType>, totalCount: number) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
-    setCurrentPage: (currentPage: number) => void
     getUsersFromPage: (page: number) => void
     disabled: boolean
     toggleDisabled: (disabled: boolean) => void

@@ -3,8 +3,7 @@ import {connect} from "react-redux";
 import {
     follow,
     getAllUsersThunkCreator,
-    setCurrentPage,
-    setUsers,
+    getUsersFromPageThunkCreator,
     toggleDisabled,
     toggleIsFetching,
     unfollow,
@@ -37,8 +36,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export const UsersContainer = connect(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
-    setCurrentPage,
     toggleIsFetching,
-    toggleDisabled, getAllUsersThunkCreator
+    toggleDisabled, getAllUsersThunkCreator,
+    getUsersFromPageThunkCreator
 })(UsersAPIComponent)
