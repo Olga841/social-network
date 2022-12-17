@@ -2,7 +2,6 @@ import React from "react";
 import s from '../components_styles/Users.module.css'
 import userAvatar from '../../images/493fa0f13970ab3ef29375669f670451.jpg'
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 type UserType = {
     id: number,
@@ -63,14 +62,7 @@ export const Users = (props: UsersPropsType) => {
                     : <button
                         disabled={props.disabled}
                         onClick={() => {
-                            props.toggleDisabled(true)
-                            usersAPI.unfollowUser(u.id).then(response => {
-                                if (response.data.resultCode === 0) {
-                                    props.unfollow(u.id)
-                                    console.log(u.followed)
-                                    props.toggleDisabled(false)
-                                }
-                            })
+                            props.unfollow(u.id)
                         }}
                     >unfollow</button>}
                 </div>
