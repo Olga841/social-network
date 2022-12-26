@@ -1,8 +1,6 @@
 import React from "react";
-import s from './components_styles/main.module.css'
-import {Post, PostPropsType} from "./Post";
-import {ProfileInfo} from "./ProfileInfo";
-import {UserProfileInfoType} from "./redux/profile-reducer";
+import s from '../components_styles/main.module.css'
+import {Post, PostPropsType} from "../Post";
 
 export type MyProfilePropsType = {
     posts: Array<PostPropsType>
@@ -31,8 +29,8 @@ export function MyProfile(props: MyProfilePropsType) {
                           value={props.newPostText}/>
                 <button className='new-post' onClick={addPost}>New post
                 </button>
-                {props.posts.map(p => {
-                    return <Post post={p.post} like={p.like}/>
+                {props.posts.map((p, index) => {
+                    return <Post key={index} post={p.post} like={p.like}/>
                 })}
             </div>
         </main>

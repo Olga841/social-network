@@ -1,8 +1,7 @@
 import React from "react";
-import s from './components_styles/Users.module.css'
-import userAvatar from './../images/493fa0f13970ab3ef29375669f670451.jpg'
+import s from '../components_styles/Users.module.css'
+import userAvatar from '../../images/493fa0f13970ab3ef29375669f670451.jpg'
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 type UserType = {
     id: number,
@@ -21,13 +20,12 @@ type UsersPropsType = {
     users: Array<UserType>,
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    setUsers: (users: Array<UserType>, totalCount: number) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
-    setCurrentPage: (currentPage: number) => void
     getUsersFromPage: (page: number) => void
-
+    disabled: boolean
+    toggleDisabled: (disabled: boolean) => void
 }
 
 
@@ -37,11 +35,12 @@ export const Users = (props: UsersPropsType) => {
     for (let i = 1; i < pagesCount; i++) {
         pages.push(i)
     }
+
     return (<div>
         <div>
-            {pages.map(p => {
+            {pages.map((p, index) => {
 
-                return <span className={props.currentPage === p ? s.selectedPage : ''}
+                return <span key={index} className={props.currentPage === p ? s.selectedPage : ''}
                              onClick={() => props.getUsersFromPage(p)}>{p + ' '}</span>
             })}
 
@@ -55,34 +54,15 @@ export const Users = (props: UsersPropsType) => {
                 </NavLink>
                 <div>  {!u.followed
                     ? <button
+                        disabled={props.disabled}
                         onClick={() => {
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                withCredentials: true,
-                                headers: {
-                                    'API-KEY': 'cf66b916-fda5-47ac-9f68-3fafeff56e6d'
-                                }
-                            }).then(response => {
-                                if (response.data.resultCode === 0) {
-                                    props.follow(u.id)
-                                    console.log(u.followed)
-                                }
-                            })
+                            props.follow(u.id)
                         }}
                     >follow</button>
                     : <button
+                        disabled={props.disabled}
                         onClick={() => {
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                withCredentials: true,
-                                headers: {
-                                    'API-KEY': 'cf66b916-fda5-47ac-9f68-3fafeff56e6d'
-                                }
-                            }).then(response => {
-                                if (response.data.resultCode === 0) {
-
-                                    props.unfollow(u.id)
-                                    console.log(u.followed)
-                                }
-                            })
+                            props.unfollow(u.id)
                         }}
                     >unfollow</button>}
                 </div>

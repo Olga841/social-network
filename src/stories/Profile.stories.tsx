@@ -1,6 +1,5 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react';
-import {Profile} from '../components/Profile';
+import {Profile} from '../components/Profile/Profile';
 
 export default {
     title: 'Profile',

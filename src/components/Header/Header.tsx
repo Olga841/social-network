@@ -1,9 +1,16 @@
 import React from "react";
-import s from './components_styles/header.module.css'
+import s from '../components_styles/header.module.css'
 import {NavLink} from "react-router-dom";
-import {AuthPropsType} from "./HeaderContainer";
 
-export function Header(props: AuthPropsType) {
+export type HeaderPropsType = {
+    data: {
+        id: number | null
+        email: string | null
+        login: string | null
+    }
+}
+
+export function Header(props: HeaderPropsType) {
     console.log(props)
     return (
         <header className={s.header}>

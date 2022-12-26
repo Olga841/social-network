@@ -1,8 +1,6 @@
 import React from "react";
-import s from './components_styles/main.module.css'
-import {Post, PostPropsType} from "./Post";
-import {ProfileInfo} from "./ProfileInfo";
-import {UserProfileInfoType} from "./redux/profile-reducer";
+import s from '../components_styles/main.module.css'
+import {UserProfileInfoType} from "../redux/profile-reducer";
 
 export type UserProfilePropsType = {
     info: UserProfileInfoType
@@ -28,7 +26,7 @@ export function UserProfile(props: UserProfilePropsType) {
                 <div>lookingForAJob: {props.info.lookingForAJob}</div>
                 <div>{props.info.lookingForAJobDescription}</div>
                 <div>
-                    <img src={props.info.photos.large}/>
+                    <img src={props.info.photos.large} alt={'photo'}/>
                 </div>
             </div>
         </main>
